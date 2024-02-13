@@ -10,6 +10,19 @@ const Navbar = () => {
     navigate('/login');
   }
   const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M HOME', 'Sale', '지속가능성'];
+  const search = (event) => {
+    if(event.key === 'Enter') {
+      //enter를 칠 때만 콘솔에 찍히게
+      console.log("we click this key", event.key);
+      //입력한 검색어를 읽어와서 
+      let keyword = event.target.value;
+      console.log("keyword", keyword);
+      //url을 바꿔준다
+      navigate(`/?q=${keyword}`);
+    }
+
+  }
+
   return (
     <div>
       <div>
@@ -32,7 +45,7 @@ const Navbar = () => {
         </ul>
         <div className='search-box'>
             <FontAwesomeIcon icon={faSearch} className='search-icon'/>
-            <input type='text' placeholder='제품 검색'/>
+            <input type='text' placeholder='제품 검색' onKeyPress={(event) => search(event)}/>
         </div>
       </div>
     </div>

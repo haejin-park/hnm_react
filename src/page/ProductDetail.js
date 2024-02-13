@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Dropdown, Row } from 'react-bootstrap'
-// import Form from 'react-bootstrap/Form';
 import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
