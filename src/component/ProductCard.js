@@ -7,7 +7,7 @@ const ProductCard = ({item}) => {
     navigate(`/product/${item.id}`);
   }
   return (
-    <div onClick={showDetail}>
+    <div className="card" onClick={showDetail}>
       <img className="product-img" src ={item?.img}/>
       <div className="choice">{item?.choice === true? 'Consicous choice': ''}</div>
       <div className="title">{item?.title}</div> 

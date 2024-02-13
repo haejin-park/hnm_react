@@ -19,6 +19,7 @@
     list-style-type: none;
     font-size: 20px;
     font-weight: 500;
+    padding: 20px;
 }
 
 .menu-list li {
@@ -44,12 +45,14 @@
     font-size: 15px;
 }
 
-.product-card-col:hover {
-    transform: scale(1.1);
+.card {
+    border: none !important;   
+    margin-bottom: 10px;
 }
 
-.product-img {
-    height: 400px;
+.card:hover {
+    transform: scale(1.1);
+    z-index:1;
 }
 
 .choice {
@@ -68,4 +71,17 @@
 
 .login-area Button:hover {
     background-color: brown;
+}
+
+.product-img {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.product-item div {
+    margin-bottom: 10px;
+}
+
+.add-btn {
+    width: 100%;
 }
