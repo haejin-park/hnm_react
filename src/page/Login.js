@@ -10,6 +10,7 @@ const Login = ({setAuthenticate}) => {
     setAuthenticate(true);
     navigate('/');
   }
+  
   return (
     <div>
       <Container>

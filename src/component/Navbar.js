@@ -4,11 +4,8 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({authenticate, setAuthenticate}) => {
   const navigate = useNavigate();
-  const goToLogin = () => {
-    navigate('/login');
-  }
   const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M HOME', 'Sale', '지속가능성'];
   const search = (event) => {
     if(event.key === 'Enter') {
@@ -20,15 +17,16 @@ const Navbar = () => {
       //url을 바꿔준다
       navigate(`/?q=${keyword}`);
     }
-
   }
+
+  //loginStatus가 '로그아웃'일 때만 로그아웃 버튼 클릭하면 로그인으로 바뀌도록 
 
   return (
     <div>
       <div>
         <div className="login-button">
           <FontAwesomeIcon icon={faUser}/>
-          <div onClick={goToLogin}>로그인</div>
+          {authenticate? <div onClick={() => setAuthenticate(false)}>로그아웃</div> : <div onClick={() => navigate('/login')}>로그인</div>}
         </div>
       </div>
       <div className="nav-section">
