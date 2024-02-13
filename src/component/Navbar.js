@@ -45,7 +45,7 @@ const Navbar = () => {
         </ul>
         <div className='search-box'>
             <FontAwesomeIcon icon={faSearch} className='search-icon'/>
-            <input type='text' placeholder='제품 검색' onKeyPress={(event) => search(event)}/>
+            <input type='text' placeholder='제품 검색' onKeyDown={(event) => search(event)}/>
         </div>
       </div>
     </div>
