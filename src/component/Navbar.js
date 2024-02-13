@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = ({authenticate, setAuthenticate}) => {
   const navigate = useNavigate();
@@ -30,10 +30,12 @@ const Navbar = ({authenticate, setAuthenticate}) => {
         </div>
       </div>
       <div className="nav-section">
-        <img 
-          width={100}
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/709px-H%26M-Logo.svg.png"
-        />
+        <Link to='/'>
+          <img 
+            width={100}
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/709px-H%26M-Logo.svg.png"
+          />
+        </Link>
       </div>
       <div className="menu-area">
         <ul className="menu-list">
