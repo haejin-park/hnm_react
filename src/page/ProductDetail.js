@@ -10,7 +10,7 @@ const ProductDetail = () => {
   let [error, setError] = useState("");
   const getProductDetail = async() => {
     setLoading(true);
-    let url = `http://localhost:5000/products/${id}`;
+    let url = `https://my-json-server.typicode.com/haejin-park/hnm_react/products/${id}`;
     let response = await fetch(url);
     let data = await response.json();
 
