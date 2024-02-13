@@ -5,6 +5,7 @@ import Login from './page/Login';
 import ProductDetail from './page/ProductDetail';
 import Navbar from './component/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from 'react';
 /*
 1. 전체 상품 페이지, 로그인, 상품 상세 페이지
 2. 전체 상품 페이지에서는 전체 상품을 볼 수 있다
@@ -17,12 +18,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 9. 상품을 검색할 수 있다.
 */
 function App() {
+  const [authenticate, setAuthenticate] = useState(false); //로그인하면 true 로그인 안하면 false
+  useEffect(() => {
+    console.log("authenticate", authenticate);
+  }, [authenticate])
   return (
     <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<ProductAll />}/>
-        <Route path="/login" element={<Login />}/>
+        <Route path="/login" element={<Login setAuthenticate={setAuthenticate}/>}/>
         <Route path="/product/:id" element={<ProductDetail />}/>
       </Routes>
     </div>
@@ -30,3 +35,4 @@ function App() {
 }
 
 export default App;
+

@@ -20,7 +20,7 @@ const ProductAll = () => {
   return (
     <div>
       <Container>
-        <Row className='product-card-row'>
+        <Row>
           {productList.map((product, index) => (
             <Col className="product-card-col" key={index} lg={3}>
               <ProductCard item={product} />

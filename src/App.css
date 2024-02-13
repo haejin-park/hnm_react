@@ -1,13 +1,14 @@
-/* body {
-    font-family: sans-serif;;
-} */
-
 .login-button {
     display: flex;
     justify-content: flex-end;
     margin: 20px;
 }
 
+.login-button div {
+    margin-left: 10px;
+    cursor: pointer;
+}
+ 
 .nav-section {
     display: flex;  
     justify-content: center;
@@ -16,6 +17,8 @@
 .menu-list {
     display: flex;  
     list-style-type: none;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .menu-list li {
@@ -53,10 +56,16 @@
     height: 20px;
     font-size: 11px; 
 }
+
 .title, .price{
     font-size: 20px;
 }
+
 .new-product {
     height: 50px;
     font-size: 14px; 
+}
+
+.login-area Button:hover {
+    background-color: brown;
 }
