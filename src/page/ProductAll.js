@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../component/ProductCard';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const ProductAll = () => {
   const [productList, setProductList] = useState([]);
@@ -18,8 +19,15 @@ const ProductAll = () => {
   // 카드 가운데, 한줄에 네개씩, 반응형 웹사이트
   return (
     <div>
-      <h1>상품 전체 페이지</h1>
-      <ProductCard />
+      <Container>
+        <Row>
+          {productList.map((product, index) => (
+            <Col key={index} lg={3}>
+              <ProductCard item={product} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </div>
   )
 }
