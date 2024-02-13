@@ -3,7 +3,7 @@ import { Button, Container, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 const Login = ({setAuthenticate}) => {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   const loginUser = (e) => {
     e.preventDefault();
     console.log("login user function issue");
@@ -13,8 +13,8 @@ const Login = ({setAuthenticate}) => {
   
   return (
     <div>
-      <Container>
-        <Form onSubmit={(e) => loginUser(e)} >
+      <Container className="login-area">
+        <Form className="login-form" onSubmit={(e) => loginUser(e)} >
         <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder='Email'/>

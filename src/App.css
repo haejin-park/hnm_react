@@ -1,48 +1,60 @@
-.login-button {
+.nav-header {
     display: flex;
-    justify-content: flex-end;
-    margin: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20px;
 }
 
-.login-button div {
-    margin-left: 10px;
-    cursor: pointer;
-}
- 
-.nav-section {
-    display: flex;  
-    justify-content: center;
+.nav-header * {
+    margin-right: 10px;
+    margin-top: 20px;
 }
 
-.menu-list {
+.menu {
     display: flex;  
     list-style-type: none;
-    font-size: 20px;
-    font-weight: 500;
     padding: 20px;
 }
 
-.menu-list li {
+.menu li {
     padding: 10px;
 }
 
-.menu-area {
+.menu li a {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
+.nav-logo {
+    display: flex;  
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.nav-menu-area {
     display: flex;
     justify-content: center;
-    padding-top: 10px;
+}
+
+.burger-menu {
+    margin-left: 20px;
 }
 
 .search-box {
     border-bottom: 1px solid black;
-    padding: 5px;
     position: absolute; /* 부모기준 */
     right: 20px;
+    padding: 5px;
 }
 
 .search-box input {
     border: none;
     margin-left: 5px;
-    font-size: 15px;
+}
+
+.search-box input:focus {
+    outline:none;
 }
 
 .card {
@@ -50,38 +62,116 @@
     margin-bottom: 10px;
 }
 
+.choice {
+    height: 20px;
+    font-size: 11px; 
+    color:#63786a;
+    font-weight: bold;
+}
+
+.new-product {
+    height: 50px;
+    font-size: 11px; 
+}
+
+.login-form{
+    width:40em;    
+}
+
+.login-area {
+    display: flex;
+    justify-content: center;
+}
+
+
+.product-detail-img {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* 화면 작아져도 이미지 안잘리게 */
+.product-detail-img img { 
+    width: 100%;
+}
+
+.product-info{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.drop-down {
+    margin-top: 20px;
+}
+
+.add-btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
 .card:hover {
     transform: scale(1.1);
     z-index:1;
 }
 
-.choice {
-    height: 20px;
-    font-size: 11px; 
+
+.hide {
+    visibility: hidden;
 }
 
-.title, .price{
+@media screen and (max-width:1200px){
+    .hide {
+        visibility: visible;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .search-box {
+        display: none;
+    }
+}
+
+.side-menu {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 2;
+    top:0;
+    left:0;
+    background-color: burlywood;
+    overflow-x: hidden; /*요소 내용이 요소의 가로폭 초과시 초과분 보이지않게*/
+    transition: 0.5s;
+    padding-top: 60px
+}
+
+.side-menu-list button {
+    margin: 5px;
+    border: none;
+    background: none;
     font-size: 20px;
+    width: 120px;
+
+} 
+
+.side-menu .closebtn {
+    position:absolute;
+    top: 0px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    border: none;
+    background:none;
 }
 
-.new-product {
-    height: 50px;
-    font-size: 14px; 
-}
-
-.login-area Button:hover {
-    background-color: brown;
-}
-
-.product-img {
+.side-menu-list {
     display: flex;
-    justify-content: flex-end;
-}
+    flex-direction: column;
+    align-items: center;    
+} 
 
-.product-item div {
-    margin-bottom: 10px;
-}
-
-.add-btn {
-    width: 100%;
-}
+.side-menu-list button:hover {
+    background-color: beige;
+    border-radius: 3px;
+} 

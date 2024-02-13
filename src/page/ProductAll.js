@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../component/ProductCard';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 
 const ProductAll = () => {
   const [productList, setProductList] = useState([]);
   const [query, setQuery] = useSearchParams();
+  let [error, setError] = useState("");
   const getProducts = async () => {
-    let searchQuery = query.get('q') || "";
-    console.log("쿼리값은? ", searchQuery);
-    let url = `http://localhost:5000/products?q=${searchQuery}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    console.log(data);
-    setProductList(data);
+    try {
+      let searchQuery = query.get('q') || "";
+      console.log("쿼리값은? ", searchQuery);
+      let url = `http://localhost:5000/products?q=${searchQuery}`;
+      let response = await fetch(url);
+      let data = await response.json();
+      console.log(data);
+      if(data.length < 1) {
+        if(searchQuery !== ""){
+          setError(`${searchQuery}와 일치하는 상품이 없습니다.`);
+        } else {
+          throw new Error("결과가 없습니다.");
+        }
+      }
+      setProductList(data);
+    } catch(err) {
+      setError(err.message);
+    }
   };
 
   useEffect(() => {
@@ -24,13 +36,20 @@ const ProductAll = () => {
   return (
     <div>
       <Container>
-        <Row>
-          {productList.map((product, index) => (
-            <Col key={index} lg={3}>
-              <ProductCard item={product} />
-            </Col> 
-          ))}
-        </Row>
+        {error? (
+          <Alert className="text-center" variant="danger">
+            {error}
+          </Alert>
+          ) : (
+          <Row>
+            {productList.map((product, index) => (
+              <Col key={product.id} md={3} sm={12}>
+                <ProductCard item={product} />
+              </Col> 
+            ))}
+          </Row>  
+          )
+        }
       </Container>
     </div>
   )

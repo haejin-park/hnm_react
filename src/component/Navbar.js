@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = ({authenticate, setAuthenticate}) => {
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M HOME', 'Sale', '지속가능성'];
   const search = (event) => {
     if(event.key === 'Enter') {
@@ -18,33 +18,54 @@ const Navbar = ({authenticate, setAuthenticate}) => {
       navigate(`/?q=${keyword}`);
     }
   }
-
-  //loginStatus가 '로그아웃'일 때만 로그아웃 버튼 클릭하면 로그인으로 바뀌도록 
+  let [width, setWidth] = useState(0);
 
   return (
     <div>
-      <div>
-        <div className="login-button">
-          <FontAwesomeIcon icon={faUser}/>
-          {authenticate? <div onClick={() => setAuthenticate(false)}>로그아웃</div> : <div onClick={() => navigate('/login')}>로그인</div>}
+      <div className='side-menu' style={{width: width}}>
+        <button className='closebtn' onClick={() => setWidth(0)}>&times;</button>
+        <div className='side-menu-list'>
+          {menuList.map((menu,index) => (
+            <button key={index}>{menu}</button>
+          ))}
         </div>
       </div>
-      <div className="nav-section">
+      <div>
+        <div className="nav-header">
+          <div className="burger-menu hide">
+            <FontAwesomeIcon icon={faBars} onClick={() => setWidth(250)} />
+          </div>
+          {authenticate ? (
+            <div onClick={() => setAuthenticate(false)}>
+              <FontAwesomeIcon icon={faUser} />
+              <span style={{ cursor: "pointer" }}>로그아웃</span>
+            </div>
+          ) : (
+            <div onClick={() => navigate("/login")}>
+              <FontAwesomeIcon icon={faUser} />
+              <span style={{ cursor: "pointer" }}>로그인</span>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="nav-logo">
         <Link to='/'>
           <img 
             width={100}
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/709px-H%26M-Logo.svg.png"
+            src="https://logos-world.net/wp-content/uploads/2020/04/HM-Logo-1999-present.jpg"
           />
         </Link>
       </div>
-      <div className="menu-area">
-        <ul className="menu-list">
+      <div className="nav-menu-area">
+        <ul className="menu">
           {menuList.map((menu,index) => (
-            <li key={index}>{menu}</li>
+            <li key={index}>
+              <a href="#">{menu}</a>
+            </li>
           ))}
         </ul>
         <div className='search-box'>
-            <FontAwesomeIcon icon={faSearch} className='search-icon'/>
+            <FontAwesomeIcon icon={faSearch}/>
             <input type='text' placeholder='제품 검색' onKeyDown={(event) => search(event)}/>
         </div>
       </div>
