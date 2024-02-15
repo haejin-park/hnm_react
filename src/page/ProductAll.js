@@ -4,7 +4,7 @@ import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 
 const ProductAll = () => {
-  const [productList, setProductList] = useState([]);
+  let [productList, setProductList] = useState([]);
   const [query, setQuery] = useSearchParams();
   let [error, setError] = useState("");
   const getProducts = async () => {

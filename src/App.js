@@ -18,7 +18,7 @@ import PrivateRoute from './route/PrivateRoute';
 9. 상품을 검색할 수 있다.
 */
 function App() {
-  const [authenticate, setAuthenticate] = useState(false); //로그인하면 true 로그인 안하면 false
+  let [authenticate, setAuthenticate] = useState(false); //로그인하면 true 로그인 안하면 false
   useEffect(() => {
     console.log("authenticate", authenticate);
   }, [authenticate]);

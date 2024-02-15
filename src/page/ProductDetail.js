@@ -5,8 +5,8 @@ import { useParams, useSearchParams } from 'react-router-dom';
 const ProductDetail = () => {
   const { id }= useParams();
   console.log('id', id);
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(false);
+  let [product, setProduct] = useState(null);
+  let [loading, setLoading] = useState(false);
   let [error, setError] = useState("");
   const getProductDetail = async() => {
     setLoading(true);
