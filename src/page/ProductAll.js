@@ -2,27 +2,25 @@ import React, { useEffect, useState } from 'react'
 import ProductCard from '../component/ProductCard';
 import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
-
+import { productAction } from '../redux/actions/productAction';
+import { useDispatch, useSelector } from 'react-redux';
 const ProductAll = () => {
-  let [productList, setProductList] = useState([]);
+  const dispatch = useDispatch();
+  let productList = useSelector((state) => state.productList);
   const [query, setQuery] = useSearchParams();
   let [error, setError] = useState("");
-  const getProducts = async () => {
+  const getProducts = () => {
     try {
       let searchQuery = query.get('q') || "";
       console.log("쿼리값은? ", searchQuery);
-      let url = `https://my-json-server.typicode.com/haejin-park/hnm_react/products?q=${searchQuery}`;
-      let response = await fetch(url);
-      let data = await response.json();
-      console.log(data);
-      if(data.length < 1) {
+      dispatch(productAction.getProducts(searchQuery))
+      if(productList.length < 1) {
         if(searchQuery !== ""){
           setError(`${searchQuery}와 일치하는 상품이 없습니다.`);
         } else {
           throw new Error("결과가 없습니다.");
         }
       }
-      setProductList(data);
     } catch(err) {
       setError(err.message);
     }
