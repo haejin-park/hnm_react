@@ -6,9 +6,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticateAction } from '../redux/actions/authenticateAction';
 import { productAction } from '../redux/actions/productAction';
+import { Alert } from 'react-bootstrap';
 
 const Navbar = () => {
-  let authenticate = useSelector((state) => state.auth.authenticate);
+  let {authenticate, errorMessage} = useSelector((state) => state.auth);
   let dispatch = useDispatch();
   const logout = () => {
     dispatch(authenticateAction.logout());
@@ -25,9 +26,13 @@ const Navbar = () => {
 
   let [width, setWidth] = useState(0);
 
-
   return (
     <div>
+      {errorMessage && (
+        <Alert className="text-center mt-3" variant="danger">
+          {errorMessage}
+        </Alert>
+      )}
       <div className='side-menu' style={{width: width}}>
         <button className='closebtn' onClick={() => setWidth(0)}>&times;</button>
         <div className='side-menu-list'>

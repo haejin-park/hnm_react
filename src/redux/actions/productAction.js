@@ -14,6 +14,7 @@ function getProducts(keyword) {
                 dispatch(productActions.setErrorMessage(`${keyword}와 일치하는 상품이 없습니다.`));
             }
         } catch(error) {
+            console.error(error);
             dispatch(productActions.setErrorMessage(error.message));
         }
     };
@@ -30,8 +31,8 @@ function getProductDetail(id) {
             let product = await response.json();
             dispatch(productActions.getSingleProduct(product))
         } catch(error) {
+            console.error(error);
             dispatch(productActions.setErrorMessage(error.message));
-
         }
     };
 }
@@ -41,6 +42,7 @@ function searchKeyword(keyword) {
         try {
             dispatch(productActions.searchKeyword(keyword))
         } catch(error) {
+            console.error(error);
             dispatch(productActions.setErrorMessage(error.message));
         }
 

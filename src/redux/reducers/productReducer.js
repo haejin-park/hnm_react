@@ -4,7 +4,7 @@ let initialState = {
     productList:[],
     product:{},
     keyword: "",
-    error: "",
+    errorMessage: "",
 };
 
 const productSlice = createSlice({
@@ -13,18 +13,18 @@ const productSlice = createSlice({
     reducers: {
         getAllProducts(state, action){
             state.productList = action.payload;
-            state.error = "";
+            state.errorMessage = "";
         },
         getSingleProduct(state, action) {
             state.product = action.payload;
-            state.error = "";
+            state.errorMessage = "";
         },
         searchKeyword(state, action) {
             state.keyword = action.payload;
-            state.error = "";
+            state.errorMessage = "";
         },
         setErrorMessage(state, action) {
-            state.error = action.payload;
+            state.errorMessage = action.payload;
         }
     }
 });

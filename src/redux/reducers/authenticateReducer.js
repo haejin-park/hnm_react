@@ -4,7 +4,7 @@ let initialState = {
     id:'',
     password: '',
     authenticate: false,
-    
+    errorMessage: '',
 }
 
 const authenticateSlice = createSlice({
@@ -15,12 +15,17 @@ const authenticateSlice = createSlice({
             state.id = action.payload.id;
             state.password= action.payload.password;
             state.authenticate = true;
+            state.errorMessage = '';
         },
         logout(state, action) {
             state.id = '';
             state.password = '';
             state.authenticate = false;
-        }
+            state.errorMessage = '';
+        },
+        setErrorMessage(state, action) {
+            state.errorMessage = action.payload;
+        },
     }
 });
 
