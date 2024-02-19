@@ -24,6 +24,5 @@ const authenticateSlice = createSlice({
     }
 });
 
-// console.log('authenticateSlice', authenticateSlice);
 export const authenticateActions = authenticateSlice.actions;
 export default authenticateSlice.reducer;

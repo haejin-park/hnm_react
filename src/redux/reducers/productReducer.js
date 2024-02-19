@@ -20,7 +20,6 @@ const productSlice = createSlice({
             state.error = "";
         },
         searchKeyword(state, action) {
-            console.log("action.payload", action.payload);
             state.keyword = action.payload;
             state.error = "";
         },
@@ -29,8 +28,6 @@ const productSlice = createSlice({
         }
     }
 });
-
-// console.log('productSlice', productSlice);
 
 export const productActions = productSlice.actions;
 export default productSlice.reducer;

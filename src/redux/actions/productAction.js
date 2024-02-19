@@ -3,8 +3,6 @@ import {productActions} from '../reducers/productReducer';
 function getProducts(keyword) {
     return async (dispatch, getSetate) => {
         try {
-            console.log("getProducts 확인");
-            console.log('getProducts keyword', keyword);
             let url = `https://my-json-server.typicode.com/haejin-park/hnm_react/products?q=${keyword}`;
             let response = await fetch(url);
             if(!response.ok) {
@@ -41,8 +39,6 @@ function getProductDetail(id) {
 function searchKeyword(keyword) {
     return (dispatch, getState) => {
         try {
-            console.log("searchKeyword 확인");
-            console.log('searchKeyword keyword', keyword);
             dispatch(productActions.searchKeyword(keyword))
         } catch(error) {
             dispatch(productActions.setErrorMessage(error.message));

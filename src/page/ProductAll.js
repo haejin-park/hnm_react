@@ -10,7 +10,6 @@ const ProductAll = () => {
   let [loading, setLoading] = useState(false);
   const getProducts = () => {
     setLoading(true);
-    console.log("productAll 확인");
     dispatch(productAction.getProducts(keyword));
     setLoading(false);
   };
