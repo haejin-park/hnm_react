@@ -16,9 +16,10 @@ const Navbar = () => {
   const search = (event) => {
     if(event.key === 'Enter') {
       let keyword = event.target.value;
-      dispatch(productAction.searchKeyword(keyword));
+        dispatch(productAction.searchKeyword(keyword)); 
+      }
     }
-  }
+
   let navigate = useNavigate();
   const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M HOME', 'Sale', '지속가능성'];
 

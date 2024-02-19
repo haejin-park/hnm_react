@@ -1,3 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit";
+
 let initialState = {
     productList:[],
     product:{},
@@ -5,42 +7,30 @@ let initialState = {
     error: "",
 };
 
-
-const productReducer = (state=initialState, action) => {
-    const {type, payload} = action;
-    switch(type) {
-        case "GET_PRODUCTS_SUCCESS":
-            return {
-                ...state,
-                productList: payload.productList,
-                error: "",
-            };
-        
-        case "GET_PRODUCT_SUCCESS":
-            return {
-                ...state,
-                product: payload.product,
-                error: "",
-            };    
-
-        case "SEARCH_KEYWORD_SUCCESS":
-            return {
-                ...state,
-                keyword: payload.keyword,
-                error: "",
-            };    
-
-        case "SET_ERROR_MESSAGE":
-            return {
-                ...state,
-                error: payload
-            };
-            
-        default: 
-            return {
-                ...state
-        };
+const productSlice = createSlice({
+    name: 'product',
+    initialState,
+    reducers: {
+        getAllProducts(state, action){
+            state.productList = action.payload;
+            state.error = "";
+        },
+        getSingleProduct(state, action) {
+            state.product = action.payload;
+            state.error = "";
+        },
+        searchKeyword(state, action) {
+            console.log("action.payload", action.payload);
+            state.keyword = action.payload;
+            state.error = "";
+        },
+        setErrorMessage(state, action) {
+            state.error = action.payload;
+        }
     }
-}
+});
 
-export default productReducer;
+// console.log('productSlice', productSlice);
+
+export const productActions = productSlice.actions;
+export default productSlice.reducer;
