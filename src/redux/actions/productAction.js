@@ -7,7 +7,6 @@ function getProducts(keyword) {
                 dispatch({type: "SET_ERROR_MESSAGE", payload: `상품을 불러오는데 실패했습니다`});
             }
             let productList = await response.json();
-            // console.log("productList", productList);
             dispatch({type: "GET_PRODUCTS_SUCCESS", payload: {productList}});
             if (productList.length === 0) {
                 dispatch({type: "SET_ERROR_MESSAGE", payload: `${keyword}와 일치하는 상품이 없습니다.`});
@@ -27,7 +26,6 @@ function getProductDetail(id) {
                 dispatch({type: "SET_ERROR_MESSAGE", payload: `상품을 불러오는데 실패했습니다`});
             }
             let product = await response.json();
-            // console.log("product", product);
             dispatch({type: "GET_PRODUCT_SUCCESS", payload: {product}});
         } catch(error) {
             dispatch({type: "SET_ERROR_MESSAGE", payload: error.message});
@@ -38,7 +36,6 @@ function getProductDetail(id) {
 function searchKeyword(keyword) {
     return (dispatch, getState) => {
         try {
-            // console.log("keyword", keyword);
             dispatch({type:"SEARCH_KEYWORD_SUCCESS", payload: {keyword}})
         } catch(error) {
             dispatch({type: "SET_ERROR_MESSAGE", payload: error.message});

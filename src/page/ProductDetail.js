@@ -10,8 +10,6 @@ const ProductDetail = () => {
   let {product, error} = useSelector((state) => state.product);
   let [loading, setLoading] = useState(false);
   const getProductDetail = () => {
-    // console.log("ProductDetail getProductDetail id", id);
-    // console.log("product", product);
     setLoading(true);
     dispatch(productAction.getProductDetail(id));
     setLoading(false);

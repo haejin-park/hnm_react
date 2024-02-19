@@ -11,7 +11,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const loginUser = (e) => {
     e.preventDefault();
-    // console.log("login user function issue");
     dispatch(authenticateAction.login(id, password));
     navigate('/');
   }

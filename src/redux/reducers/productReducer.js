@@ -8,7 +8,6 @@ let initialState = {
 
 const productReducer = (state=initialState, action) => {
     const {type, payload} = action;
-    // console.log("action", action);
     switch(type) {
         case "GET_PRODUCTS_SUCCESS":
             return {
