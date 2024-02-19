@@ -128,6 +128,10 @@
         display: none;
     }
 
+    /* .search-box {
+        display: none;
+    } */
+
     .search-box {
         display: none;
     }
@@ -175,3 +179,23 @@
     background-color: beige;
     border-radius: 3px;
 } 
+
+.side-search-box {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-search-box input {
+    border: none;
+    background-color: beige;
+    height: 40px;
+    width: 80%;
+    font-size: 20px;
+    margin-left: 3%;
+}
+
+.side-search-box input:focus {
+    outline:none;
+}

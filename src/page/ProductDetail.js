@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, Button, Col, Container, Dropdown, Row } from 'react-bootstrap'
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { productAction } from '../redux/actions/productAction';
 
 const ProductDetail = () => {
-  const { id }= useParams();
-  console.log('id', id);
-  let [product, setProduct] = useState(null);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  let {product, error} = useSelector((state) => state.product);
   let [loading, setLoading] = useState(false);
-  let [error, setError] = useState("");
-  const getProductDetail = async() => {
+  const getProductDetail = () => {
+    // console.log("ProductDetail getProductDetail id", id);
+    // console.log("product", product);
     setLoading(true);
-    let url = `https://my-json-server.typicode.com/haejin-park/hnm_react/products/${id}`;
-    let response = await fetch(url);
-    let data = await response.json();
-
+    dispatch(productAction.getProductDetail(id));
     setLoading(false);
-    console.log('data', data);
-    setProduct(data);
   }
   useEffect(() => {
     getProductDetail();
   },[]);
 
-  if(loading || product  == null) return <h1>Loading</h1>;
+  if(loading || product == null) return <h1>Loading</h1>;
   return (
     <div>
       <Container>
@@ -45,9 +43,9 @@ const ProductDetail = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  {product?.size.length > 0 && 
+                  {product.size?.length > 0 && 
                     product.size.map((item, index) => (
-                    <Dropdown.Item href="#/action-1" key="index"> 
+                    <Dropdown.Item href="#/action-1" key={index}> 
                       {item}
                     </Dropdown.Item>
                   ))}

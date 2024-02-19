@@ -3,22 +3,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenticateAction } from '../redux/actions/authenticateAction';
+import { productAction } from '../redux/actions/productAction';
 
-const Navbar = ({authenticate, setAuthenticate}) => {
-  let navigate = useNavigate();
-  const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M HOME', 'Sale', '지속가능성'];
+const Navbar = () => {
+  let authenticate = useSelector((state) => state.auth.authenticate);
+  let dispatch = useDispatch();
+  const logout = () => {
+    dispatch(authenticateAction.logout());
+  }
   const search = (event) => {
     if(event.key === 'Enter') {
       //enter를 칠 때만 콘솔에 찍히게
-      console.log("we click this key", event.key);
+      // console.log("we click this key", event.key);
       //입력한 검색어를 읽어와서 
       let keyword = event.target.value;
-      console.log("keyword", keyword);
-      //url을 바꿔준다
-      navigate(`/?q=${keyword}`);
+      // console.log("keyword", keyword);
+      dispatch(productAction.searchKeyword(keyword));
     }
   }
+  let navigate = useNavigate();
+  const menuList = ['여성', 'Divided', '남성', '신생아/유아', '아동', 'H&M HOME', 'Sale', '지속가능성'];
+
   let [width, setWidth] = useState(0);
+
 
   return (
     <div>
@@ -29,6 +38,10 @@ const Navbar = ({authenticate, setAuthenticate}) => {
             <button key={index}>{menu}</button>
           ))}
         </div>
+        <div className='side-search-box'>
+          <FontAwesomeIcon icon={faSearch}/>
+          <input type='text' placeholder='제품 검색' onKeyDown={(event) => search(event)}/>
+        </div>
       </div>
       <div>
         <div className="nav-header">
@@ -36,7 +49,7 @@ const Navbar = ({authenticate, setAuthenticate}) => {
             <FontAwesomeIcon icon={faBars} onClick={() => setWidth(250)} />
           </div>
           {authenticate ? (
-            <div onClick={() => setAuthenticate(false)}>
+            <div onClick={() => logout()}>
               <FontAwesomeIcon icon={faUser} />
               <span style={{ cursor: "pointer" }}>로그아웃</span>
             </div>
@@ -65,8 +78,8 @@ const Navbar = ({authenticate, setAuthenticate}) => {
           ))}
         </ul>
         <div className='search-box'>
-            <FontAwesomeIcon icon={faSearch}/>
-            <input type='text' placeholder='제품 검색' onKeyDown={(event) => search(event)}/>
+          <FontAwesomeIcon icon={faSearch}/>
+          <input type='text' placeholder='제품 검색' onKeyDown={(event) => search(event)}/>
         </div>
       </div>
     </div>
