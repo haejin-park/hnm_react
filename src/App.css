@@ -43,7 +43,7 @@
 
 .search-box {
     border-bottom: 1px solid black;
-    position: absolute; /* 부모기준 */
+    position: absolute; 
     right: 20px;
     padding: 5px;
 }
