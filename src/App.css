@@ -39,6 +39,7 @@
 
 .burger-menu {
     margin-left: 20px;
+    visibility: hidden;
 }
 
 .search-box {
@@ -115,12 +116,8 @@
 }
 
 
-.hide {
-    visibility: hidden;
-}
-
 @media screen and (max-width:1200px){
-    .hide {
+    .burger-menu {
         visibility: visible;
     }
 
@@ -182,6 +179,7 @@
 
 .side-search-box {
     margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,7 +190,7 @@
     background-color: beige;
     height: 40px;
     width: 80%;
-    font-size: 20px;
+    font-size: 17px;
     margin-left: 3%;
 }
 
